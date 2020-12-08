@@ -1,0 +1,5 @@
+coverage run -m  pytest test\TestScanner.py
+coverage report -m
+
+coverage run -m  pytest test\test_hand.py
+coverage report -m

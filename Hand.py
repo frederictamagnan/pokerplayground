@@ -1,13 +1,24 @@
 from Card import Card
 import numpy as np
 class Hand:
-
+    """
+     Straight Flush : 0
+     Four of a kind : 1
+     Full : 2
+     Flush :3
+     Straight: 4
+     Three of a kind : 5
+     Two pairs : 6
+     One Pair : 7
+     High Card :8
+     Kickers :9,11,12,13
+     """
     def __init__(self,cards,tensor=None):
         if tensor is None:
             self.cards=cards
             self.tensor,self.tensor_straight=self.cards_to_tensor()
-        else:
-            self.tensor=tensor
+        self.force_array=np.zeros(14)
+
 
     def __repr__(self):
         repr=str()
@@ -16,6 +27,10 @@ class Hand:
             repr+=card.__repr__()
         return repr
 
+    @property
+    def force(self):
+        force =int(''.join(map(str, list(self.force_array.astype(int)))))
+        return force
 
     def cards_to_tensor(self):
 
@@ -25,7 +40,7 @@ class Hand:
             tensor[i_card,card.height,card.suit]=1
             if card.height==1:
                 tensor[i_card,14,card.suit]=1
-        tensor_straight=tensor
+        tensor_straight=np.copy(tensor)
         tensor[:,1,:]=0
         return tensor,tensor_straight
 
@@ -43,65 +58,120 @@ class Hand:
             return -1,-1
         return np.argmax(self.tensor[:,:,suit_index]),suit_index
 
-    def highest_pair(self):
-        index_highest=self.search_for_x_of_a_kind(x=2,nb_top=1)
-        remaining_tensor=self.tensor
-        remaining_tensor[:,index_highest,:]=0
+    def high_card(self):
+        kickers=self.kickers(self.tensor,5)
+        self.force_array[-5:]=kickers
+        return kickers,-1
 
-        return index_highest,self.kickers(remaining_tensor,4)
+    def one_pair(self):
+        index_highest=self.search_for_x_of_a_kind(x=2,nb_top=1)
+        if type(index_highest).__module__ != np.__name__ and index_highest==-1:
+            return -1,-1
+        remaining_tensor=np.copy(self.tensor)
+        remaining_tensor[:,index_highest,:]=0
+        kickers=self.kickers(remaining_tensor,4)
+        self.force_array[7]=index_highest
+        self.force_array[-4:]=kickers
+        return index_highest,kickers
+
     def two_pairs(self):
         index_highest = self.search_for_x_of_a_kind(x=2, nb_top=2)
-        if type(index_highest).__module__ != np.__name__:
+        if type(index_highest).__module__ != np.__name__ and index_highest==-1:
             return -1,-1
-        remaining_tensor = self.tensor
+        remaining_tensor = np.copy(self.tensor)
         remaining_tensor[:, index_highest, :] = 0
-        return -np.sort(-index_highest), self.kickers(remaining_tensor,1)
+        kickers=self.kickers(remaining_tensor,1)
+        self.force_array[6:8]=index_highest
+        self.force_array[-1:]=kickers
+
+
+        return -np.sort(-index_highest), kickers
 
     def three_of_a_kind(self):
         index_highest = self.search_for_x_of_a_kind(x=3, nb_top=1)
-        if type(index_highest).__module__ != np.__name__:
+        if type(index_highest).__module__ != np.__name__ and index_highest==-1:
             return -1,-1
-        remaining_tensor=self.tensor
+        remaining_tensor=np.copy(self.tensor)
         remaining_tensor[:,index_highest,:]=0
-        return index_highest, self.kickers(remaining_tensor,2)
+        kickers= self.kickers(remaining_tensor,2)
+        self.force_array[5]=index_highest
+        self.force_array[-2:]=kickers
+        return index_highest,kickers
 
     def four_of_a_kind(self):
         index_highest = self.search_for_x_of_a_kind(x=4, nb_top=1)
-        if type(index_highest).__module__ != np.__name__:
+        if type(index_highest).__module__ != np.__name__ and index_highest==-1 :
             return -1,-1
-        remaining_tensor = self.tensor
+        remaining_tensor = np.copy(self.tensor)
         remaining_tensor[:, index_highest, :] = 0
-        return index_highest, self.kickers(remaining_tensor,1)
+        kickers=self.kickers(remaining_tensor,1)
+        self.force_array[4]=index_highest
+        self.force_array[-2]=kickers
+        return index_highest,kickers
 
     def flush(self):
         max_index_flush,index_suit=self.search_for_flush()
-        if type(max_index_flush).__module__ != np.__name__:
-            return -1
-        return max_index_flush,index_suit
+        if type(max_index_flush).__module__ != np.__name__ and max_index_flush==-1 :
+            return -1,-1
+        self.force_array[2]=max_index_flush
+        return max_index_flush,-1
 
     def straight(self):
         sum_height = np.sum(self.tensor_straight, axis=(0, 2))
-        # sum_height_ace=np.zeros(15)
-        # sum_height_ace[:14]=sum_height
-        # sum_height_ace[14] = sum_height[1]
         sum_height_ace_max=(sum_height>=1).astype(int)
         search_seq=np.ones(5)
         straight_indexes=Hand.search_sequence_numpy(sum_height_ace_max,search_seq)
         if len(straight_indexes)==0:
-            return -1
+            return -1,-1
         max_straight=np.max(straight_indexes)
-
-
-        return max_straight
+        self.force_array[3]=max_straight
+        return max_straight,-1
 
     def straight_flush(self):
         max_index_flush,suit_index=self.search_for_flush()
-        if max_index_flush != -1 and self.straight() !=-1:
-            tensor=self.tensor_straight[:, :, suit_index].reshape(-1,15,4)
-            tensor=Hand(tensor)
-            return tensor.straigth()
+        is_straight=self.straight()
 
-        return None
+        if max_index_flush != -1 and is_straight!=-1:
+            # tensor=np.zeros((self.tensor_straight.shape[0],15,4))
+            # tensor[:,:,suit_index]=self.tensor_straight[:, :, suit_index]
+            # sum_height = np.sum(tensor, axis=(0, 2))
+            # print(self.tensor_straight)
+
+            tensor=np.squeeze(self.tensor_straight[:,:,suit_index])
+
+            sum_height=np.sum(tensor,axis=0)
+
+            sum_height_ace_max = (sum_height >= 1).astype(int)
+            search_seq = np.ones(5)
+            straight_indexes = Hand.search_sequence_numpy(sum_height_ace_max, search_seq)
+            if len(straight_indexes) == 0:
+                return -1,-1
+            max_straight = np.max(straight_indexes)
+            self.force_array[0] = max_straight
+            return max_straight,-1
+
+
+        return -1,-1
+
+
+
+    def full(self):
+        three_of_a_kind_index,kickers=self.three_of_a_kind()
+        if three_of_a_kind_index==-1:
+            return -1,-1
+        remaining_tensor=np.copy(self.tensor)
+        remaining_tensor[:,three_of_a_kind_index,:]=0
+
+        x=2
+        nb_top=1
+        sum_height = np.sum(remaining_tensor, axis=(0, 2))
+        x_of_a_kind = np.argwhere(sum_height >= x).reshape(-1)
+        if x_of_a_kind.size < nb_top:
+            return -1,-1
+        highest_pair_indice=-np.sort(-x_of_a_kind)[:nb_top]
+        self.force_array[1]=three_of_a_kind_index
+        self.force_array[7]=highest_pair_indice
+        return (three_of_a_kind_index,highest_pair_indice),-1
 
 
 
