@@ -1,8 +1,9 @@
+import numpy as np
 class Card:
 
     def __init__(self,height,suit):
         assert 0<height<14,"height must be between 1 and 13"
-        assert 0<suit
+        assert -1<suit<4, "suit must be between 1 and 4"
         self.height=height
         self.suit=suit
 
@@ -30,3 +31,8 @@ class Card:
         }
         card_repr=height_dict[self.height]+suit_dict[self.suit]
         return card_repr
+
+    @staticmethod
+    def generate_hand(length=7):
+        random_card=list(np.random.choice(52,length,replace=False))
+        return [Card(height=x%13+1,suit=x%4) for x in random_card]
