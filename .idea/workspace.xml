@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c415e76f-8871-457e-865d-917960ec505d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Evaluate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_card.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/z_cmd.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pokerplayground.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pokerplayground.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Equity2Hands.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EquityNHands.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Evaluate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/playground.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_hand.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,8 +47,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.playground">
-    <configuration name="Evaluate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.EquityNHands">
+    <configuration name="Card" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pokerplayground" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -61,7 +60,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Evaluate.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Card.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Equity2Hands" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pokerplayground" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Equity2Hands.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="EquityNHands" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pokerplayground" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EquityNHands.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -91,7 +132,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="playground" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pokerplayground" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -103,7 +144,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/playground.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -112,48 +153,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in test_card.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="pokerplayground" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_card.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in test_hand.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="pokerplayground" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_hand.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.playground" />
-      <item itemvalue="Python tests.Unittests in test_hand.py" />
-      <item itemvalue="Python tests.Unittests in test_card.py" />
+      <item itemvalue="Python.Equity2Hands" />
       <item itemvalue="Python.Hand" />
-      <item itemvalue="Python.Evaluate" />
+      <item itemvalue="Python.setup" />
+      <item itemvalue="Python.EquityNHands" />
+      <item itemvalue="Python.Card" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.playground" />
-        <item itemvalue="Python tests.Unittests in test_hand.py" />
-        <item itemvalue="Python.Evaluate" />
+        <item itemvalue="Python.EquityNHands" />
+        <item itemvalue="Python.Card" />
+        <item itemvalue="Python.Equity2Hands" />
+        <item itemvalue="Python.setup" />
         <item itemvalue="Python.Hand" />
-        <item itemvalue="Python tests.Unittests in test_card.py" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +188,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

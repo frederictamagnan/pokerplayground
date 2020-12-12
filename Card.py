@@ -1,4 +1,6 @@
 import numpy as np
+from Hand import Hand
+from utils import split
 class Card:
 
     def __init__(self,height,suit):
@@ -27,12 +29,23 @@ class Card:
             0:"♠",
             1:"♥",
             2:"♦",
-            3:"♣ "
+            3:"♣"
         }
         card_repr=height_dict[self.height]+suit_dict[self.suit]
         return card_repr
 
     @staticmethod
-    def generate_hand(length=7):
+    def generate_hand(length=7,split_bool=False,chunk_length=None,seed_number='reset'):
+        if seed_number =='reset':
+            np.random.seed()
+        elif isinstance(seed_number,int):
+            np.random.seed(seed_number)
+        else:
+            raise ValueError("unknown value for seed_number")
+
         random_card=list(np.random.choice(52,length,replace=False))
-        return [Card(height=x%13+1,suit=x%4) for x in random_card]
+        if split_bool:
+            return list(map(Hand,list(split([Card(height=x%13+1,suit=x%4) for x in random_card],chunk_length))))
+            # return list(split([Card(height=x%13+1,suit=x%4) for x in random_card],length_chunk))
+        return Hand([Card(height=x%13+1,suit=x%4) for x in random_card])
+        # return [Card(height=x%13+1,suit=x%4) for x in random_card]

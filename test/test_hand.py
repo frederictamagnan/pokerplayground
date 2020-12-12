@@ -44,7 +44,7 @@ class TestHand(unittest.TestCase):
         index_highest_pairs,best_kicker=hh.two_pairs()
 
         self.arrayEqual(index_highest_pairs,[5,2])
-        self.arrayEqual(best_kicker,[3])
+        self.arrayEqual(best_kicker,[3,0,0,0,0])
 
     def test_two_pairs_seven_cards_hand(self):
         a = Card(2, 1)
@@ -62,7 +62,7 @@ class TestHand(unittest.TestCase):
         index_highest_pairs,best_kicker=hh.two_pairs()
 
         self.arrayEqual(index_highest_pairs,[7,5])
-        self.arrayEqual(best_kicker,[3])
+        self.arrayEqual(best_kicker,[3,0,0,0,0])
 
     def test_two_pairs_seven_cards_hand_with_aces(self):
         a = Card(1, 1)
@@ -79,7 +79,7 @@ class TestHand(unittest.TestCase):
         index_highest_pairs, best_kicker = hh.two_pairs()
 
         self.arrayEqual(index_highest_pairs, [14, 7])
-        self.arrayEqual(best_kicker,[5])
+        self.arrayEqual(best_kicker,[5,0,0,0,0])
 
 
     def test_two_pairs_7_cards_with_aces(self):
@@ -98,7 +98,7 @@ class TestHand(unittest.TestCase):
         index_highest_pairs, best_kicker = hh.two_pairs()
 
         self.arrayEqual(index_highest_pairs,[14,7])
-        self.arrayEqual(best_kicker,[5])
+        self.arrayEqual(best_kicker,[5,0,0,0,0])
 
 
 
@@ -150,7 +150,7 @@ class TestHand(unittest.TestCase):
         hh = Hand(hh)
         index_four_of_a_kind, best_kicker = hh.four_of_a_kind()
         self.arrayEqual(index_four_of_a_kind, [14])
-        self.arrayEqual(best_kicker, [6])
+        self.arrayEqual(best_kicker, [6,0,0,0,0])
 
     def test_four_of_a_kind_7_card_false(self):
         a = Card(2, 1)
@@ -183,7 +183,7 @@ class TestHand(unittest.TestCase):
         hh = Hand(hh)
         index_three_of_a_kind, best_kicker = hh.three_of_a_kind()
         self.arrayEqual(index_three_of_a_kind, [14])
-        self.arrayEqual(best_kicker, [9,6])
+        self.arrayEqual(best_kicker, [9,6,0,0,0])
 
     def test_flush_7_cards(self):
         a = Card(1, 1)

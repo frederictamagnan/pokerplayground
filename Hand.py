@@ -1,4 +1,4 @@
-from Card import Card
+
 import numpy as np
 class Hand:
     """
@@ -29,7 +29,13 @@ class Hand:
 
     @property
     def force(self):
-        force =int(''.join(map(str, list(self.force_array.astype(int)))))
+        self.all()
+        # force =int(''.join(map(str, list(self.force_array.astype(int)))))
+        base=np.full((14),16).astype(np.dtype('int64'))
+        power=-np.sort(-np.arange(14).astype(np.dtype('int64')))
+        powerbase=np.power(base,power).astype(np.dtype('int64'))
+        force=np.matmul(self.force_array,powerbase).astype(np.dtype('int64'))
+        #return hex(force)
         return force
 
     def cards_to_tensor(self):
@@ -60,6 +66,7 @@ class Hand:
 
     def high_card(self):
         kickers=self.kickers(self.tensor,5)
+
         self.force_array[-5:]=kickers
         return kickers,-1
 
@@ -71,7 +78,7 @@ class Hand:
         remaining_tensor[:,index_highest,:]=0
         kickers=self.kickers(remaining_tensor,4)
         self.force_array[7]=index_highest
-        self.force_array[-4:]=kickers
+        self.force_array[-5:]=kickers
         return index_highest,kickers
 
     def two_pairs(self):
@@ -82,7 +89,7 @@ class Hand:
         remaining_tensor[:, index_highest, :] = 0
         kickers=self.kickers(remaining_tensor,1)
         self.force_array[6:8]=index_highest
-        self.force_array[-1:]=kickers
+        self.force_array[-5:]=kickers
 
 
         return -np.sort(-index_highest), kickers
@@ -95,7 +102,7 @@ class Hand:
         remaining_tensor[:,index_highest,:]=0
         kickers= self.kickers(remaining_tensor,2)
         self.force_array[5]=index_highest
-        self.force_array[-2:]=kickers
+        self.force_array[-5:]=kickers
         return index_highest,kickers
 
     def four_of_a_kind(self):
@@ -106,7 +113,7 @@ class Hand:
         remaining_tensor[:, index_highest, :] = 0
         kickers=self.kickers(remaining_tensor,1)
         self.force_array[4]=index_highest
-        self.force_array[-2]=kickers
+        self.force_array[-5:]=kickers
         return index_highest,kickers
 
     def flush(self):
@@ -176,21 +183,34 @@ class Hand:
 
 
     def kickers(self,remaining_tensor,nb_kickers):
+        nb_kickers=min(nb_kickers,int((np.sum(self.tensor))))
         sum_height = np.sum(remaining_tensor, axis=(0, 2))
         kicker = np.argwhere(sum_height >= 1).reshape(-1)
         kicker_list=list(kicker)
         if kicker.size == 0:
             return -1
-        return (-np.sort(-kicker))[:nb_kickers]
+        kickers_fill=np.zeros(5)
+        kickers_fill[:nb_kickers]=(-np.sort(-kicker))[:nb_kickers]
+        return kickers_fill
 
     def all(self):
-        self.search_for_flush()
-        self.highest_pair()
-        self.three_of_a_kind()
-        self.four_of_a_kind()
-        self.straight()
-        self.flush()
+        funcs=[self.straight_flush,self.full,self.four_of_a_kind,self.full,self.flush,self.straight,self.three_of_a_kind,self.two_pairs,self.one_pair,self.high_card]
+        for function in funcs:
+            res,kicker=function()
+            if type(res).__module__ == np.__name__:
+                break
 
+    def __cmp__(self, other):
+        if self.force>other.force:
+            return 1
+        elif self.force==other.force:
+            return 0
+        else :
+            return -1
+
+    @staticmethod
+    def merge(hand1,hand2):
+        return Hand(hand1.cards+hand2.cards)
     @staticmethod
     def search_sequence_numpy(arr, seq):
         """ Find sequence in an array using NumPy only.
@@ -222,6 +242,7 @@ class Hand:
             return np.where(np.convolve(M, np.ones((Nseq), dtype=int)) > 0)[0]
         else:
             return []  # No match found
+
 
 
 
