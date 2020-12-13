@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c415e76f-8871-457e-865d-917960ec505d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/GenerateEquityDataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Card.py" beforeDir="false" afterPath="$PROJECT_DIR$/Card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EquityNHands.py" beforeDir="false" afterPath="$PROJECT_DIR$/EquityNHands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hand.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenerateEquityDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateEquityDataset.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

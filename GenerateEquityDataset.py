@@ -1,10 +1,10 @@
 
 from EquityNHands import EquityNHands
 import numpy as np
-
+from tqdm import tqdm
 class GenerateEquityDataset:
 
-    def __init__(self,n_rows=10,n_sim=10):
+    def __init__(self,n_rows=10000,n_sim=1000):
         self.inputs=[]
         self.boards=[]
         self.winrates=[]
@@ -12,12 +12,12 @@ class GenerateEquityDataset:
         self.n_sim=n_sim
 
     def generate_dataset(self):
-        for i in range(self.n_rows):
+        for i in tqdm(range(self.n_rows)):
             n_h=np.random.randint(2,6)
             nb_c=np.random.choice([0,3,4,5],1)
             e = EquityNHands(random=True, n_hands=n_h,n_simulation=self.n_sim)
             hands=e.list_hands
-            board,winrate=e.monte_carlo_simulation(nb_card_initial_board=nb_c,to_print=True)
+            board,winrate=e.monte_carlo_simulation(nb_card_initial_board=nb_c,to_print=False)
             input=np.zeros((6,2,15,4))
             for i_h,h in enumerate(hands):
                 input[i_h,:,:]=h.tensor
