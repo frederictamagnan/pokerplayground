@@ -20,3 +20,7 @@ def get_list_maximum_values(list_):
     winner = np.argwhere(list_ == np.amax(list_))
 
     return winner.flatten().tolist()
+
+idx_to_card=[(idx,(idx%13+1,idx%4)) for idx in np.arange(52)]
+dict_idx_to_card=dict((elt[0], elt[1]) for elt in idx_to_card)
+dict_card_to_idx=dict((elt[1], elt[0]) for elt in idx_to_card)

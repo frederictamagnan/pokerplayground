@@ -1,6 +1,7 @@
 import numpy as np
 from Hand import Hand
 from utils import split
+from utils import dict_card_to_idx,dict_idx_to_card
 class Card:
 
     def __init__(self,height,suit):
@@ -8,6 +9,10 @@ class Card:
         assert -1<suit<4, "suit must be between 1 and 4"
         self.height=height
         self.suit=suit
+
+
+
+
 
     def __repr__(self):
         height_dict={
@@ -35,7 +40,7 @@ class Card:
         return card_repr
 
     @staticmethod
-    def generate_hand(length=7,split_bool=False,chunk_length=None,seed_number='reset'):
+    def generate_hand(length=7,split_bool=False,chunk_length=None,seed_number='reset',previous=np.arange(52)):
         if seed_number =='reset':
             np.random.seed()
         elif isinstance(seed_number,int):
@@ -43,9 +48,9 @@ class Card:
         else:
             raise ValueError("unknown value for seed_number")
 
-        random_card=list(np.random.choice(52,length,replace=False))
+        random_card=list(np.random.choice(previous,length,replace=False))
         if split_bool:
             return list(map(Hand,list(split([Card(height=x%13+1,suit=x%4) for x in random_card],chunk_length))))
             # return list(split([Card(height=x%13+1,suit=x%4) for x in random_card],length_chunk))
-        return Hand([Card(height=x%13+1,suit=x%4) for x in random_card])
+        return Hand([Card(*dict_idx_to_card[x]) for x in random_card])
         # return [Card(height=x%13+1,suit=x%4) for x in random_card]

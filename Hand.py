@@ -1,5 +1,6 @@
 
 import numpy as np
+from utils import dict_idx_to_card,dict_card_to_idx
 class Hand:
     """
      Straight Flush : 0
@@ -183,14 +184,20 @@ class Hand:
 
 
     def kickers(self,remaining_tensor,nb_kickers):
-        nb_kickers=min(nb_kickers,int((np.sum(self.tensor))))
+        # sum_height=np.sum(self.tensor,axis=(0,2))
+        # sup=sum_height>=1
+        # sup=sup.astype(int)
+        # nb_kickers=min(nb_kickers,np.sum(sup))
         sum_height = np.sum(remaining_tensor, axis=(0, 2))
         kicker = np.argwhere(sum_height >= 1).reshape(-1)
         kicker_list=list(kicker)
         if kicker.size == 0:
             return -1
         kickers_fill=np.zeros(5)
-        kickers_fill[:nb_kickers]=(-np.sort(-kicker))[:nb_kickers]
+        sorted_kickers=(-np.sort(-kicker))
+        nb_kickers=min(len(sorted_kickers),nb_kickers)
+
+        kickers_fill[:nb_kickers]=sorted_kickers[:nb_kickers]
         return kickers_fill
 
     def all(self):
@@ -243,7 +250,16 @@ class Hand:
         else:
             return []  # No match found
 
+    @staticmethod
+    def id_of_list_of_hands(list_of_hands):
 
+        list_of_index=[]
+        for hand in list_of_hands:
+            for card in hand.cards:
+                list_of_index.append(dict_card_to_idx[(card.height,card.suit)])
+        l_52=list(np.arange(52))
+        diff=list(set(l_52) - set(list_of_index))
+        return diff
 
 
 
