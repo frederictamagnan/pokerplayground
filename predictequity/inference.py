@@ -7,14 +7,13 @@ import torch.optim as optim
 from Hand import Hand
 from Card import Card
 import numpy as np
-PATH = './model/poker_net.pth'
+PATH = './model/poker_cnnnet2.pth'
 
-n_hands=2
-nb_cards_board=0
+n_hands=3
+nb_cards_board=3
 hands=Card.generate_hand(n_hands*2,split_bool=True,chunk_length=n_hands)
 print(hands)
 boards=Card.generate_hand(nb_cards_board,previous=Hand.id_of_list_of_hands(hands))
-print(boards)
 x_cards=np.zeros((6,2,15,4)).astype(np.float32)
 for i_h,h in enumerate(hands):
     x_cards[i_h,:,:,:]=h.tensor
@@ -29,16 +28,23 @@ full_dataset = EquityDataset(bypath=False,x_cards=x_cards,x_boards=x_boards,y_wi
 
 infloader = torch.utils.data.DataLoader(full_dataset,batch_size=1)
 
-net=SimpleNet()
+net=SimpleCNNNet()
 # correct = 0
 # total = 0
 net.load_state_dict(torch.load(PATH))
 
 with torch.no_grad():
     for data in infloader:
-        x_c,x_b, y = data
-        outputs = net(x_c,x_b)
-        print(outputs.data)
+        x, y = data
+        outputs = net(x)
+        out=outputs.data.reshape(-1,6).numpy()
 
+print(boards)
 
+for i,o in enumerate(out[0]):
+    if i==(len(hands)):
+        break
+    print(hands[i],o*100)
+
+print(out*100)
 

@@ -14,7 +14,7 @@ class GenerateEquityDataset:
         self.n_rows=n_rows
         self.n_sim=n_sim
 
-    def generate_dataset(self):
+    def generate_dataset(self,suffix):
         for i in tqdm(range(self.n_rows)):
             n_h=np.random.randint(2,6)
             nb_c=np.random.choice([0,3,4,5],1)
@@ -41,12 +41,13 @@ class GenerateEquityDataset:
         self.winrates=vstack(self.winrates)
         
         filename='./data/'
-        save_npz(filename+'x_cards.npz',self.inputs)
-        save_npz(filename +'x_boards.npz',self.boards)
-        save_npz(filename+'y_winrates.npz',self.winrates)
+        save_npz(filename+'x_cards_'+suffix+'.npz',self.inputs)
+        save_npz(filename +'x_boards_'+suffix+'.npz',self.boards)
+        save_npz(filename+'y_winrates_'+suffix+'.npz',self.winrates)
         # np.savez('./data/dataset.npz',x_cards=self.inputs,x_boards=self.boards,y_winrates=self.winrates)
 
 
 if __name__=='__main__':
-    g=GenerateEquityDataset()
-    g.generate_dataset()
+    for i in range(100):
+        g=GenerateEquityDataset()
+        g.generate_dataset(suffix=str(i))

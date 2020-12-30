@@ -33,7 +33,9 @@ class EquityNHands:
             hands_board_with_flop.append(Hand.merge(hand, board))
 
         for i in range(self.n_simuation):
-
+            to_add=1
+            if nb_card_initial_board==5:
+                to_add=self.n_simuation
             post_board = Card.generate_hand(5-nb_card_initial_board,previous=Hand.id_of_list_of_hands(hands_board_with_flop))
             hands_board_post_flop = list()
             for i_hand,hand in enumerate(hands_board_with_flop):
@@ -43,12 +45,12 @@ class EquityNHands:
             indices_max=get_list_maximum_values(listforce)
             all_indices=np.arange(self.n_hands)
             if len(indices_max)==1:
-                winrate[indices_max,0]+=1
+                winrate[indices_max,0]+=to_add
                 remaining_indices=np.delete(all_indices,indices_max)
             elif len(indices_max)>1:
-                winrate[indices_max,1]+=1
+                winrate[indices_max,1]+=to_add
                 remaining_indices = np.delete(all_indices, indices_max)
-            winrate[remaining_indices,2]+=1
+            winrate[remaining_indices,2]+=to_add
         if to_print:
             print("      W  T  L")
             for i,line in enumerate(winrate):

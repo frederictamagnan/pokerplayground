@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c415e76f-8871-457e-865d-917960ec505d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Logging.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/EquityDataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/SimpleCNNNet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/inference.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/pg.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/training.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predictequity/validation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/predictequity/model/poker_cnnnet.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sidebetting/pgpari.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sidebetting/pgpari2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/x_boards.npz" beforeDir="false" afterPath="$PROJECT_DIR$/data/x_boards.npz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/x_cards.npz" beforeDir="false" afterPath="$PROJECT_DIR$/data/x_cards.npz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/y_winrates.npz" beforeDir="false" afterPath="$PROJECT_DIR$/data/y_winrates.npz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EquityNHands.py" beforeDir="false" afterPath="$PROJECT_DIR$/EquityNHands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenerateEquityDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateEquityDataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/EquityDataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictequity/EquityDataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/SimpleCNNNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictequity/SimpleCNNNet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/activity.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/activity.log.1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictequity/inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/model/poker_net.pth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/model/pokercnn_net.pth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/predictequity/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/predictequity/training.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +37,13 @@
   <component name="ProjectId" id="1lMw9ded71f0bL12dSSjM4IxmOC" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../code/SimpleGeneration" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\QZTD9928\Documents\codePerso\pokerplayground\sidebetting" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -49,8 +57,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.inference">
-    <configuration name="EquityDataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.GenerateEquityDataset">
+    <configuration name="GenerateEquityDataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pokerplayground" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,32 +66,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/predictequity" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictequity/EquityDataset.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="SimpleCNNNet" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pokerplayground" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/predictequity" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictequity/SimpleCNNNet.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GenerateEquityDataset.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,6 +100,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pgpari" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pokerplayground" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\QZTD9928\Documents\codePerso\pokerplayground\sidebetting\pgpari.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pgpari2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pokerplayground" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\QZTD9928\Documents\codePerso\pokerplayground\sidebetting\pgpari2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="training" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pokerplayground" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,41 +163,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="validation" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pokerplayground" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/predictequity" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictequity/validation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.training" />
-      <item itemvalue="Python.SimpleCNNNet" />
-      <item itemvalue="Python.validation" />
-      <item itemvalue="Python.EquityDataset" />
       <item itemvalue="Python.inference" />
+      <item itemvalue="Python.pgpari" />
+      <item itemvalue="Python.pgpari2" />
+      <item itemvalue="Python.GenerateEquityDataset" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GenerateEquityDataset" />
         <item itemvalue="Python.inference" />
-        <item itemvalue="Python.validation" />
         <item itemvalue="Python.training" />
-        <item itemvalue="Python.SimpleCNNNet" />
-        <item itemvalue="Python.EquityDataset" />
+        <item itemvalue="Python.pgpari" />
+        <item itemvalue="Python.pgpari2" />
       </list>
     </recent_temporary>
   </component>
